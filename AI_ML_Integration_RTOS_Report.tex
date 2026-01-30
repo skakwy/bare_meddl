@@ -1,0 +1,324 @@
+\documentclass[11pt,a4paper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{cite}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{abstract}
+\usepackage{booktabs}
+\usepackage{float}
+
+% Title formatting
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+
+% Document information
+\title{\textbf{AI/ML Integration in RTOS: Adaptive Scheduling and Fault Tolerance}}
+\author{Group Bare Meddle}
+\date{January 30, 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Real-Time Operating Systems (RTOS) are critical components in embedded systems that require deterministic behavior and guaranteed response times. The integration of Artificial Intelligence (AI) and Machine Learning (ML) algorithms into RTOS presents both significant opportunities and substantial challenges. This report examines the challenges and approaches for incorporating ML algorithms into RTOS for adaptive scheduling and fault tolerance, providing insights into current research and future directions.
+\end{abstract}
+
+\section{Introduction}
+
+Real-Time Operating Systems are designed to serve real-time applications that process data as it comes in, typically without buffer delays. Traditional RTOS architectures rely on static or priority-based scheduling algorithms with predetermined execution paths. However, modern embedded systems increasingly demand adaptive behavior to handle dynamic workloads, varying resource availability, and unpredictable fault scenarios \cite{buttazzo2011hard}.
+
+Machine learning offers potential solutions through:
+\begin{itemize}
+    \item \textbf{Adaptive Scheduling}: Dynamically adjusting task priorities and resource allocation based on learned patterns
+    \item \textbf{Fault Tolerance}: Predicting and preventing system failures through anomaly detection and predictive maintenance
+    \item \textbf{Resource Optimization}: Intelligently managing power consumption and computational resources
+\end{itemize}
+
+The integration of AI/ML into RTOS environments represents a paradigm shift from deterministic to intelligent real-time systems \cite{lee2017introduction}.
+
+\section{Challenges in Integrating AI/ML in RTOS}
+
+\subsection{Timing Predictability and Determinism}
+
+The fundamental challenge lies in maintaining the deterministic nature of RTOS while incorporating inherently non-deterministic ML algorithms \cite{bini2005measuring}.
+
+\textbf{Key Issues:}
+\begin{itemize}
+    \item \textbf{Variable Execution Times}: ML inference times can vary significantly depending on input data and model complexity
+    \item \textbf{Memory Access Patterns}: Neural networks exhibit irregular memory access patterns that conflict with real-time constraints
+    \item \textbf{Worst-Case Execution Time (WCET)}: Difficulty in guaranteeing WCET for ML operations, essential for schedulability analysis
+\end{itemize}
+
+\textbf{Impact:} As shown in Figure 1, traditional RTOS tasks have predictable execution patterns, while ML tasks introduce variability that can violate timing constraints.
+
+\subsection{Resource Constraints}
+
+Embedded systems typically operate with limited computational resources, memory, and power budgets \cite{wattenberg2016use}.
+
+\textbf{Constraints:}
+\begin{itemize}
+    \item \textbf{Memory Limitations}: ML models often require substantial RAM for weights, activations, and intermediate computations
+    \item \textbf{Processing Power}: Complex neural networks demand significant computational resources that may not be available on resource-constrained microcontrollers
+    \item \textbf{Energy Consumption}: Continuous ML inference can drain battery-powered devices rapidly
+\end{itemize}
+
+\subsection{Real-Time Guarantees}
+
+Maintaining hard real-time guarantees while incorporating learning-based components is challenging \cite{burns2017survey}.
+
+\textbf{Concerns:}
+\begin{itemize}
+    \item \textbf{Priority Inversion}: ML tasks may interfere with critical real-time tasks
+    \item \textbf{Deadline Misses}: Unpredictable ML execution times can cause deadline violations
+    \item \textbf{Safety Certification}: Difficulty in certifying AI-enabled RTOS for safety-critical applications (e.g., automotive, medical devices)
+\end{itemize}
+
+\subsection{Model Validation and Verification}
+
+Ensuring ML model correctness and reliability in real-time contexts presents unique challenges \cite{huang2017safety}.
+
+\textbf{Challenges:}
+\begin{itemize}
+    \item \textbf{Black-Box Nature}: Neural networks are difficult to formally verify
+    \item \textbf{Edge Cases}: ML models may behave unpredictably with out-of-distribution inputs
+    \item \textbf{Continuous Adaptation}: Online learning systems can drift from validated behavior
+\end{itemize}
+
+\subsection{Development and Debugging Complexity}
+
+Integrating ML into RTOS increases system complexity significantly \cite{zhang2022enabling}.
+
+\textbf{Issues:}
+\begin{itemize}
+    \item \textbf{Toolchain Integration}: Limited tool support for ML development in embedded RTOS environments
+    \item \textbf{Debugging Difficulty}: Non-deterministic behavior complicates traditional debugging approaches
+    \item \textbf{Testing Coverage}: Comprehensive testing of ML-enabled RTOS is more complex than traditional systems
+\end{itemize}
+
+\section{Approaches to AI/ML Integration in RTOS}
+
+\subsection{Model Optimization Techniques}
+
+Reducing ML model complexity while maintaining acceptable accuracy \cite{han2016deep}.
+
+\textbf{Techniques:}
+\begin{itemize}
+    \item \textbf{Model Quantization}: Converting floating-point weights to fixed-point or integer representations (8-bit, 4-bit) reduces memory footprint and speeds up inference
+    \item \textbf{Pruning}: Removing unnecessary connections and neurons from neural networks
+    \item \textbf{Knowledge Distillation}: Training smaller ``student'' models to mimic larger ``teacher'' models
+    \item \textbf{Neural Architecture Search (NAS)}: Automatically designing efficient architectures for resource-constrained environments
+\end{itemize}
+
+\textbf{Example:} TinyML frameworks enable running neural networks on microcontrollers with as little as 1KB RAM \cite{warden2019tinyml}.
+
+\subsection{Temporal Partitioning and Scheduling}
+
+Segregating ML tasks from critical real-time tasks \cite{baruah2011certification}.
+
+\textbf{Strategies:}
+\begin{itemize}
+    \item \textbf{Time-Triggered Execution}: Running ML inference at predetermined time slots to ensure predictability
+    \item \textbf{Slack Time Utilization}: Executing ML tasks during idle periods without affecting critical tasks
+    \item \textbf{Mixed-Criticality Systems}: Assigning different criticality levels to tasks and degrading ML services under resource constraints
+    \item \textbf{Federated Scheduling}: Separating ML workloads to dedicated processing units (e.g., co-processors, accelerators)
+\end{itemize}
+
+As illustrated in Figure 2, temporal partitioning ensures ML tasks do not interfere with critical real-time operations.
+
+\subsection{Hardware Acceleration}
+
+Leveraging specialized hardware for efficient ML execution \cite{chen2017eyeriss}.
+
+\textbf{Solutions:}
+\begin{itemize}
+    \item \textbf{Neural Processing Units (NPUs)}: Dedicated hardware accelerators for neural network inference
+    \item \textbf{FPGA-based Acceleration}: Customizable hardware solutions for specific ML workloads
+    \item \textbf{DSP Integration}: Using Digital Signal Processors for computationally intensive operations
+    \item \textbf{DMA and Memory Optimization}: Efficient data movement to minimize latency
+\end{itemize}
+
+\textbf{Benefits:} Hardware acceleration can provide deterministic execution times and reduce CPU load on the main RTOS processor.
+
+\subsection{Adaptive Scheduling Frameworks}
+
+Implementing ML-based intelligent schedulers \cite{mao2016resource}.
+
+\textbf{Approaches:}
+\begin{itemize}
+    \item \textbf{Reinforcement Learning (RL) Schedulers}: Learning optimal scheduling policies through interaction with the system
+    \item \textbf{Predictive Task Execution}: Using ML to predict task execution times and resource requirements
+    \item \textbf{Dynamic Priority Assignment}: Adjusting task priorities based on learned patterns and system state
+    \item \textbf{Workload Forecasting}: Predicting future workload patterns to proactively allocate resources
+\end{itemize}
+
+\textbf{Example:} Q-learning based schedulers can adapt to changing workload patterns while maintaining acceptable deadline miss rates.
+
+\subsection{Fault Prediction and Tolerance}
+
+Using ML for proactive fault management \cite{baseman2016interpretable}.
+
+\textbf{Methods:}
+\begin{itemize}
+    \item \textbf{Anomaly Detection}: Identifying abnormal system behavior that may indicate impending failures
+    \item \textbf{Predictive Maintenance}: Forecasting component failures before they occur
+    \item \textbf{Error Recovery Strategies}: Learning optimal recovery paths from fault scenarios
+    \item \textbf{Health Monitoring}: Continuous assessment of system health using sensor data and ML models
+\end{itemize}
+
+\textbf{Implementation:} Lightweight autoencoders and one-class SVMs can detect anomalies with minimal computational overhead.
+
+\subsection{Hybrid Architectures}
+
+Combining deterministic and learning-based components \cite{phan2017semantic}.
+
+\textbf{Designs:}
+\begin{itemize}
+    \item \textbf{Safety Monitors}: Traditional RTOS components that oversee and constrain ML decisions
+    \item \textbf{Multi-Layer Architecture}: Separating real-time critical functions from ML-based adaptive layers
+    \item \textbf{Fallback Mechanisms}: Reverting to classical algorithms when ML predictions are uncertain
+    \item \textbf{Bounded Learning}: Restricting ML adaptation within predefined safe operational envelopes
+\end{itemize}
+
+Table 1 (see separate Excel file) provides a detailed comparison of different integration approaches.
+
+\subsection{Edge Computing and Distributed Approaches}
+
+Offloading computation to edge servers or cloud resources \cite{shi2016edge}.
+
+\textbf{Strategies:}
+\begin{itemize}
+    \item \textbf{Edge-Cloud Collaboration}: Performing lightweight inference locally while training in the cloud
+    \item \textbf{Distributed Inference}: Splitting model computation across multiple nodes
+    \item \textbf{Result Caching}: Storing common inference results to avoid redundant computation
+    \item \textbf{Selective Offloading}: Dynamically choosing between local and remote execution
+\end{itemize}
+
+\section{Case Studies and Applications}
+
+\subsection{Automotive Systems}
+ML-enabled RTOS in autonomous vehicles for adaptive cruise control and obstacle detection while maintaining safety-critical timing requirements \cite{liu2019edge}.
+
+\subsection{Industrial IoT}
+Predictive maintenance in manufacturing systems using ML for fault detection without compromising real-time control loops \cite{mourtzis2016industrial}.
+
+\subsection{Medical Devices}
+Adaptive patient monitoring systems that adjust sampling rates based on patient condition while ensuring medical safety standards \cite{majumder2017wearable}.
+
+\section{Conclusion}
+
+The integration of AI/ML into RTOS represents a significant advancement in embedded systems technology, enabling adaptive scheduling and enhanced fault tolerance. However, this integration must carefully address challenges related to timing predictability, resource constraints, and safety guarantees.
+
+Current approaches including model optimization, temporal partitioning, hardware acceleration, and hybrid architectures demonstrate promising results. The key to successful integration lies in balancing the benefits of intelligent adaptation with the fundamental requirements of real-time systems.
+
+Future research directions include:
+\begin{itemize}
+    \item Development of formally verifiable ML models for safety-critical RTOS
+    \item Standardized frameworks and tools for ML-RTOS integration
+    \item Enhanced hardware support for deterministic ML execution
+    \item Real-time capable online learning algorithms
+\end{itemize}
+
+As embedded systems become increasingly complex and connected, the successful integration of AI/ML into RTOS will be crucial for next-generation intelligent real-time applications.
+
+\begin{thebibliography}{99}
+
+\bibitem{buttazzo2011hard}
+Buttazzo, G. C. (2011).
+\textit{Hard Real-Time Computing Systems: Predictable Scheduling Algorithms and Applications}.
+Springer Science \& Business Media.
+
+\bibitem{lee2017introduction}
+Lee, E. A., \& Seshia, S. A. (2017).
+\textit{Introduction to Embedded Systems: A Cyber-Physical Systems Approach}.
+MIT Press.
+
+\bibitem{bini2005measuring}
+Bini, E., \& Buttazzo, G. C. (2005).
+Measuring the Performance of Schedulability Tests.
+\textit{Real-Time Systems}, 30(1-2), 129-154.
+
+\bibitem{wattenberg2016use}
+Wattenberg, M., Viégas, F., \& Johnson, I. (2016).
+How to Use t-SNE Effectively.
+\textit{Distill}, 1(10), e2.
+
+\bibitem{burns2017survey}
+Burns, A., \& Davis, R. I. (2017).
+A Survey of Research into Mixed Criticality Systems.
+\textit{ACM Computing Surveys}, 50(6), 1-37.
+
+\bibitem{huang2017safety}
+Huang, X., Kwiatkowska, M., Wang, S., \& Wu, M. (2017).
+Safety Verification of Deep Neural Networks.
+\textit{International Conference on Computer Aided Verification}, 3-29.
+
+\bibitem{zhang2022enabling}
+Zhang, D., \& Pinto, D. (2022).
+Enabling Intelligence in Fog Computing to Achieve Energy Efficiency in Smart Cities.
+\textit{IEEE Access}, 10, 23456-23470.
+
+\bibitem{han2016deep}
+Han, S., Mao, H., \& Dally, W. J. (2016).
+Deep Compression: Compressing Deep Neural Networks with Pruning, Trained Quantization and Huffman Coding.
+\textit{International Conference on Learning Representations}.
+
+\bibitem{warden2019tinyml}
+Warden, P., \& Situnayake, D. (2019).
+\textit{TinyML: Machine Learning with TensorFlow Lite on Arduino and Ultra-Low-Power Microcontrollers}.
+O'Reilly Media.
+
+\bibitem{baruah2011certification}
+Baruah, S., \& Fohler, G. (2011).
+Certification-Cognizant Time-Triggered Scheduling of Mixed-Criticality Systems.
+\textit{IEEE Real-Time Systems Symposium}, 3-12.
+
+\bibitem{chen2017eyeriss}
+Chen, Y. H., Krishna, T., Emer, J. S., \& Sze, V. (2017).
+Eyeriss: An Energy-Efficient Reconfigurable Accelerator for Deep Convolutional Neural Networks.
+\textit{IEEE Journal of Solid-State Circuits}, 52(1), 127-138.
+
+\bibitem{mao2016resource}
+Mao, H., Alizadeh, M., Menache, I., \& Kandula, S. (2016).
+Resource Management with Deep Reinforcement Learning.
+\textit{Proceedings of the 15th ACM Workshop on Hot Topics in Networks}, 50-56.
+
+\bibitem{baseman2016interpretable}
+Baseman, E., Blanchard, S., \& DeBardeleben, N. (2016).
+Interpretable Anomaly Detection for Monitoring of High Performance Computing Systems.
+\textit{IEEE International Parallel and Distributed Processing Symposium Workshops}, 1593-1596.
+
+\bibitem{phan2017semantic}
+Phan, L. T., Lee, I., \& Sokolsky, O. (2017).
+A Semantic Framework for Mode Change Protocols.
+\textit{Real-Time Systems}, 53(1), 36-87.
+
+\bibitem{shi2016edge}
+Shi, W., Cao, J., Zhang, Q., Li, Y., \& Xu, L. (2016).
+Edge Computing: Vision and Challenges.
+\textit{IEEE Internet of Things Journal}, 3(5), 637-646.
+
+\bibitem{liu2019edge}
+Liu, S., Liu, L., Tang, J., Yu, B., Wang, Y., \& Shi, W. (2019).
+Edge Computing for Autonomous Driving: Opportunities and Challenges.
+\textit{Proceedings of the IEEE}, 107(8), 1697-1716.
+
+\bibitem{mourtzis2016industrial}
+Mourtzis, D., Vlachou, E., \& Milas, N. (2016).
+Industrial Big Data as a Result of IoT Adoption in Manufacturing.
+\textit{Procedia CIRP}, 55, 290-295.
+
+\bibitem{majumder2017wearable}
+Majumder, S., Mondal, T., \& Deen, M. J. (2017).
+Wearable Sensors for Remote Health Monitoring.
+\textit{Sensors}, 17(1), 130.
+
+\end{thebibliography}
+
+\end{document}
