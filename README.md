@@ -11,7 +11,19 @@ This repository contains the complete deliverables for the research project on *
 ## Repository Contents
 
 ### 📄 Main Report
-- **`AI_ML_Integration_RTOS_Report.md`** - Comprehensive 3-page report covering:
+- **`AI_ML_Integration_RTOS_Report.tex`** - LaTeX article format (recommended)
+  - Professional academic article format
+  - Properly formatted citations using BibTeX style
+  - Ready for submission and publication
+  - Compiled PDF version included
+- **`AI_ML_Integration_RTOS_Report.pdf`** - Pre-compiled PDF (7 pages)
+  - Generated from LaTeX source
+  - Print-ready format
+- **`AI_ML_Integration_RTOS_Report.md`** - Markdown version (alternative)
+  - Easy to read and edit
+  - Can be converted to other formats
+
+**Report Content:**
   - Introduction to AI/ML integration in RTOS
   - Detailed analysis of challenges
   - Various approaches and solutions
@@ -57,9 +69,16 @@ This repository contains the complete deliverables for the research project on *
 ## How to Use These Materials
 
 ### For the Report Submission:
-1. Review `AI_ML_Integration_RTOS_Report.md` for the complete written report
-2. Use `comparison_table.csv` as the supplementary Excel sheet
-3. Reference `figures/README.md` for figure descriptions
+1. **LaTeX Version (Recommended)**: 
+   - Use `AI_ML_Integration_RTOS_Report.tex` as the source file
+   - Pre-compiled PDF available: `AI_ML_Integration_RTOS_Report.pdf`
+   - Professional academic article format
+2. **Markdown Version (Alternative)**: 
+   - Review `AI_ML_Integration_RTOS_Report.md`
+   - Can be converted to PDF or DOCX if needed
+3. **Supporting Materials**:
+   - Use `comparison_table.csv` as the supplementary Excel sheet
+   - Reference `figures/README.md` for figure descriptions
 
 ### For the Presentation:
 - Option 1: Use the main report as presentation material
@@ -76,9 +95,35 @@ All content is based on published research and academic sources. Proper citation
 
 ## File Formats
 
-- Reports and documentation: Markdown (`.md`) - easily convertible to PDF, DOCX, or HTML
-- Comparison table: CSV (`.csv`) - compatible with Excel, Google Sheets, and other spreadsheet software
-- All files use UTF-8 encoding for universal compatibility
+- **LaTeX**: `AI_ML_Integration_RTOS_Report.tex` - Professional academic article format
+- **PDF**: `AI_ML_Integration_RTOS_Report.pdf` - Ready for submission (7 pages)
+- **Markdown**: `AI_ML_Integration_RTOS_Report.md` - Easy to read/edit format
+- **CSV**: `comparison_table.csv` - Compatible with Excel, Google Sheets
+- All text files use UTF-8 encoding for universal compatibility
+
+## Compiling the LaTeX Document
+
+If you need to recompile the LaTeX document:
+
+```bash
+# Compile the LaTeX source (run twice for references)
+pdflatex AI_ML_Integration_RTOS_Report.tex
+pdflatex AI_ML_Integration_RTOS_Report.tex
+
+# Or using latexmk for automatic compilation
+latexmk -pdf AI_ML_Integration_RTOS_Report.tex
+```
+
+### Required LaTeX Packages:
+- inputenc (UTF-8 encoding)
+- geometry (page margins)
+- graphicx (figures)
+- cite (citations)
+- hyperref (hyperlinks)
+- enumitem (lists)
+- booktabs (tables)
+
+All packages are standard and included in major LaTeX distributions (TeX Live, MiKTeX).
 
 ## Converting Files
 
