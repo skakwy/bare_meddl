@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from matplotlib.patches import Rectangle, FancyBboxPatch
 import numpy as np
+import os
 
 def create_figure1_traditional_scheduling():
     """
@@ -99,7 +100,8 @@ def create_figure1_traditional_scheduling():
                                   facecolor=color, edgecolor='black', linewidth=1.5)
             ax2.add_patch(rect)
             if i >= 2:  # Add warning indicator
-                ax2.text(t + rt1_duration/2, 1.8, '⚠', fontsize=14, ha='center')
+                ax2.text(t + rt1_duration/2, 1.8, '!', fontsize=16, ha='center', 
+                        fontweight='bold', color='red')
     
     # RT Task 2 - Orange, also affected
     rt2_times = [6, 13, 18]
@@ -117,10 +119,14 @@ def create_figure1_traditional_scheduling():
              verticalalignment='top')
     
     plt.tight_layout()
-    plt.savefig('/home/runner/work/bare_meddl/bare_meddl/figures/figure1_traditional_vs_ml_scheduling.pdf',
-                bbox_inches='tight', dpi=300)
-    plt.savefig('/home/runner/work/bare_meddl/bare_meddl/figures/figure1_traditional_vs_ml_scheduling.png',
-                bbox_inches='tight', dpi=300)
+    
+    # Use relative paths from script location
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    pdf_path = os.path.join(script_dir, 'figure1_traditional_vs_ml_scheduling.pdf')
+    png_path = os.path.join(script_dir, 'figure1_traditional_vs_ml_scheduling.png')
+    
+    plt.savefig(pdf_path, bbox_inches='tight', dpi=300)
+    plt.savefig(png_path, bbox_inches='tight', dpi=300)
     print("Created Figure 1: Traditional vs ML Scheduling")
     plt.close()
 
@@ -230,10 +236,14 @@ def create_figure2_temporal_partitioning():
     ax.spines['left'].set_visible(False)
     
     plt.tight_layout()
-    plt.savefig('/home/runner/work/bare_meddl/bare_meddl/figures/figure2_temporal_partitioning.pdf',
-                bbox_inches='tight', dpi=300)
-    plt.savefig('/home/runner/work/bare_meddl/bare_meddl/figures/figure2_temporal_partitioning.png',
-                bbox_inches='tight', dpi=300)
+    
+    # Use relative paths from script location
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    pdf_path = os.path.join(script_dir, 'figure2_temporal_partitioning.pdf')
+    png_path = os.path.join(script_dir, 'figure2_temporal_partitioning.png')
+    
+    plt.savefig(pdf_path, bbox_inches='tight', dpi=300)
+    plt.savefig(png_path, bbox_inches='tight', dpi=300)
     print("Created Figure 2: Temporal Partitioning")
     plt.close()
 
