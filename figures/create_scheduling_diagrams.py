@@ -15,6 +15,9 @@ def create_figure1_traditional_scheduling():
     """
     Figure 1: Traditional RTOS Task Scheduling
     Shows predictable, consistent execution times for traditional tasks
+    
+    Side effects:
+        Creates figure1_traditional_vs_ml_scheduling.pdf and .png in the script directory
     """
     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 6))
     
@@ -135,6 +138,9 @@ def create_figure2_temporal_partitioning():
     """
     Figure 2: Temporal Partitioning Architecture
     Shows how ML tasks are isolated in slack time slots
+    
+    Side effects:
+        Creates figure2_temporal_partitioning.pdf and .png in the script directory
     """
     fig, ax = plt.subplots(1, 1, figsize=(14, 7))
     
