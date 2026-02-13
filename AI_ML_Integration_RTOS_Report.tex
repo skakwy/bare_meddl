@@ -58,6 +58,13 @@ The fundamental challenge lies in maintaining the deterministic nature of RTOS w
 
 \textbf{Impact:} As shown in Figure 1, traditional RTOS tasks have predictable execution patterns, while ML tasks introduce variability that can violate timing constraints.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/figure1_traditional_vs_ml_scheduling.pdf}
+    \caption{Comparison of traditional RTOS task scheduling (top) with predictable execution times versus ML-enabled RTOS scheduling (bottom) showing variable execution times that can lead to timing violations. Traditional tasks exhibit consistent durations while ML tasks introduce unpredictability that challenges real-time guarantees.}
+    \label{fig:traditional_vs_ml}
+\end{figure}
+
 \subsection{Resource Constraints}
 
 Embedded systems typically operate with limited computational resources, memory, and power budgets \cite{wattenberg2016use}.
@@ -131,6 +138,13 @@ Segregating ML tasks from critical real-time tasks \cite{baruah2011certification
 \end{itemize}
 
 As illustrated in Figure 2, temporal partitioning ensures ML tasks do not interfere with critical real-time operations.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/figure2_temporal_partitioning.pdf}
+    \caption{Temporal partitioning architecture showing how critical real-time tasks (green, solid borders) are allocated guaranteed time slots while ML tasks (purple, dashed borders) execute during slack/idle periods. The safety monitor layer oversees all operations to prevent interference, maintaining hard real-time guarantees for critical tasks.}
+    \label{fig:temporal_partitioning}
+\end{figure}
 
 \subsection{Hardware Acceleration}
 
