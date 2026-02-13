@@ -138,7 +138,7 @@ def create_figure2_temporal_partitioning():
     """
     fig, ax = plt.subplots(1, 1, figsize=(14, 7))
     
-    ax.set_xlim(0, 25)
+    ax.set_xlim(0, 28)  # Extended to accommodate benefits text box
     ax.set_ylim(0, 5)
     ax.set_xlabel('Time (ms)', fontsize=12)
     ax.set_title('Temporal Partitioning: Isolating ML Tasks from Critical Real-Time Operations',
