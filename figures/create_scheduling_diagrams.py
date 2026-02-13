@@ -62,7 +62,7 @@ def create_figure1_traditional_scheduling():
                     ha='center', va='center', fontsize=9, fontweight='bold')
     
     # Add characteristics box
-    ax1.text(0.5, -0.7, '✓ Predictable execution times\n✓ Deterministic behavior\n✓ Easy schedulability analysis',
+    ax1.text(0.5, -0.7, '[+] Predictable execution times\n[+] Deterministic behavior\n[+] Easy schedulability analysis',
              fontsize=10, bbox=dict(boxstyle='round', facecolor='lightgreen', alpha=0.5),
              verticalalignment='top')
     
@@ -114,7 +114,7 @@ def create_figure1_traditional_scheduling():
             ax2.add_patch(rect)
     
     # Add warning box
-    ax2.text(0.5, -0.7, '✗ Variable ML execution times\n✗ Potential deadline misses\n✗ Difficult timing guarantees',
+    ax2.text(0.5, -0.7, '[X] Variable ML execution times\n[X] Potential deadline misses\n[X] Difficult timing guarantees',
              fontsize=10, bbox=dict(boxstyle='round', facecolor='#ffcccc', alpha=0.7),
              verticalalignment='top')
     
