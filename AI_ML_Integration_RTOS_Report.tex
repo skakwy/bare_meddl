@@ -45,13 +45,13 @@ The fundamental challenge in AI/ML integration lies in maintaining the determini
     \label{fig:traditional_vs_ml}
 \end{figure}
 
-Embedded systems typically operate with limited computational resources, memory, and power budgets \cite{wattenberg2016use}. ML models often require substantial RAM for weights, activations, and intermediate computations. Complex neural networks demand significant computational resources that may not be available on resource-constrained microcontrollers, and continuous ML inference can drain battery-powered devices rapidly.
+Embedded systems typically operate with limited computational resources, memory, and power budgets NEW CITIATION HEREHRAUHEAIGUHBGIUAHEGIULABEGILEABHGILUEAHGILEAUHGILEAUHG. ML models often require substantial RAM for weights, activations, and intermediate computations. Complex neural networks demand significant computational resources that may not be available on resource-constrained microcontrollers, and continuous ML inference can drain battery-powered devices rapidly.
 
 Maintaining hard real-time guarantees while incorporating learning-based components is challenging \cite{burns2017survey}, as ML tasks may cause priority inversion, unpredictable execution times can lead to deadline violations, and certifying AI-enabled RTOS for safety-critical applications (e.g., automotive, medical devices) remains difficult.
 
 Ensuring ML model correctness and reliability in real-time contexts presents unique challenges \cite{huang2017safety}. Neural networks' black-box nature makes them difficult to formally verify, they may behave unpredictably with out-of-distribution inputs, and online learning systems can drift from validated behavior.
 
-Additionally, integrating ML into RTOS significantly increases system complexity \cite{zhang2022enabling} due to limited tool support for ML development in embedded RTOS environments, non-deterministic behavior that complicates traditional debugging approaches, and the complexity of comprehensive testing for ML-enabled RTOS.
+Additionally, integrating ML into RTOS significantly increases system complexity NEW CITATION HERE due to limited tool support for ML development in embedded RTOS environments, non-deterministic behavior that complicates traditional debugging approaches, and the complexity of comprehensive testing for ML-enabled RTOS.
 
 \section{Approaches to AI/ML Integration in RTOS}
 
@@ -101,11 +101,6 @@ Bini, E., \& Buttazzo, G. C. (2005).
 Measuring the Performance of Schedulability Tests.
 \textit{Real-Time Systems}, 30(1-2), 129-154.
 
-\bibitem{wattenberg2016use}
-Wattenberg, M., Viégas, F., \& Johnson, I. (2016).
-How to Use t-SNE Effectively.
-\textit{Distill}, 1(10), e2.
-
 \bibitem{burns2017survey}
 Burns, A., \& Davis, R. I. (2017).
 A Survey of Research into Mixed Criticality Systems.
@@ -115,11 +110,6 @@ A Survey of Research into Mixed Criticality Systems.
 Huang, X., Kwiatkowska, M., Wang, S., \& Wu, M. (2017).
 Safety Verification of Deep Neural Networks.
 \textit{International Conference on Computer Aided Verification}, 3-29.
-
-\bibitem{zhang2022enabling}
-Zhang, D., \& Pinto, D. (2022).
-Enabling Intelligence in Fog Computing to Achieve Energy Efficiency in Smart Cities.
-\textit{IEEE Access}, 10, 23456-23470.
 
 \bibitem{han2016deep}
 Han, S., Mao, H., \& Dally, W. J. (2016).
