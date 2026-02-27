@@ -32,7 +32,7 @@ Real-Time Operating Systems (RTOS) are critical components in embedded systems t
 
 \section{Introduction}
 
-Real-Time Operating Systems are designed to serve real-time applications that process data as it comes in, typically without buffer delays. Traditional RTOS architectures rely on static or priority-based scheduling algorithms with predetermined execution paths. However, modern embedded systems increasingly demand adaptive behavior to handle dynamic workloads, varying resource availability, and unpredictable fault scenarios \cite{buttazzo2011hard}. Machine learning offers promising solutions for adaptive scheduling by dynamically adjusting task priorities and resource allocation based on learned patterns, improving fault tolerance through anomaly detection and predictive maintenance, and optimizing resource management including power consumption and computational resource allocation. The integration of AI/ML into RTOS environments represents a paradigm shift from deterministic to intelligent real-time systems \cite{lee2017introduction}.
+Real-Time Operating Systems are designed to serve real-time applications that process data as it comes in, typically without buffer delays. Traditional RTOS architectures rely on static or priority-based scheduling algorithms with predetermined execution paths. However, modern embedded systems increasingly demand adaptive behavior to handle dynamic workloads, varying resource availability, and unpredictable fault scenarios \cite{buttazzo2011hard}. Machine learning offers promising solutions for adaptive scheduling by dynamically adjusting task priorities and resource allocation based on learned patterns, improving fault tolerance through anomaly detection and predictive maintenance, and optimizing resource management including power consumption and computational resource allocation. The integration of AI/ML into RTOS environments represents a paradigm shift from deterministic to intelligent real-time systems \cite{lee2017introduction, gracias2025leveraging}.
 
 \section{Challenges in Integrating AI/ML in RTOS}
 
@@ -68,7 +68,7 @@ Temporal partitioning segregates ML tasks from critical real-time tasks \cite{bu
 
 Hardware acceleration leverages specialized hardware for efficient ML execution \cite{chen2017eyeriss}. Neural Processing Units (NPUs) provide dedicated hardware accelerators for neural network inference, while FPGA-based acceleration offers customizable hardware solutions. DSP integration handles computationally intensive operations, and DMA with memory optimization enables efficient data movement to minimize latency. Hardware acceleration can provide deterministic execution times and reduce CPU load on the main RTOS processor.
 
-Adaptive scheduling frameworks implement ML-based intelligent schedulers \cite{goodfellow2016deep}. Reinforcement Learning schedulers learn optimal scheduling policies through system interaction, predictive task execution uses ML to forecast task execution times and resource requirements, dynamic priority assignment adjusts task priorities based on learned patterns and system state, and workload forecasting predicts future patterns to proactively allocate resources. Q-learning based schedulers can adapt to changing workload patterns while maintaining acceptable deadline miss rates.
+Adaptive scheduling frameworks implement ML-based intelligent schedulers \cite{goodfellow2016deep}. Reinforcement Learning schedulers learn optimal scheduling policies through system interaction, predictive task execution uses ML to forecast task execution times and resource requirements, dynamic priority assignment adjusts task priorities based on learned patterns and system state, and workload forecasting predicts future patterns to proactively allocate resources. Q-learning based schedulers can adapt to changing workload patterns while maintaining acceptable deadline miss rates \cite{gracias2025leveraging}.
 
 For fault prediction and tolerance, ML enables proactive fault management \cite{goodfellow2016deep}. Anomaly detection methods identify abnormal system behavior indicating impending failures, while predictive maintenance forecasts component failures before they occur. Additionally, error recovery strategies learn optimal recovery paths from fault scenarios. Health monitoring systems continuously assess system health using sensor data and ML models. Lightweight autoencoders and one-class SVMs can detect anomalies with minimal computational overhead.
 
@@ -82,7 +82,7 @@ ML-enabled RTOS technology has been successfully applied in various domains. In 
 
 \section{Conclusion}
 
-The integration of AI/ML into RTOS represents a significant advancement in embedded systems technology, enabling adaptive scheduling and enhanced fault tolerance. However, this integration must carefully address challenges related to timing predictability, resource constraints, and safety guarantees. Current approaches including model optimization, temporal partitioning, hardware acceleration, and hybrid architectures demonstrate promising results. The key to successful integration lies in balancing the benefits of intelligent adaptation with the fundamental requirements of real-time systems. Future research directions include development of formally verifiable ML models for safety-critical RTOS, standardized frameworks and tools for ML-RTOS integration, enhanced hardware support for deterministic ML execution, and real-time capable online learning algorithms. As embedded systems become increasingly complex and connected, the successful integration of AI/ML into RTOS will be crucial for next-generation intelligent real-time applications.
+The integration of AI/ML into RTOS represents a significant advancement in embedded systems technology, enabling adaptive scheduling and enhanced fault tolerance. However, this integration must carefully address challenges related to timing predictability, resource constraints, and safety guarantees. Current approaches including model optimization, temporal partitioning, hardware acceleration, and hybrid architectures demonstrate promising results. The key to successful integration lies in balancing the benefits of intelligent adaptation with the fundamental requirements of real-time systems. Preliminary simulation studies show that ML-driven predictive scheduling can reduce average task completion time by 15--25\%, lower deadline miss rates to 2--4\% versus 6--8\% for traditional methods, and increase throughput by 10--20\% \cite{gracias2025leveraging}. Future research directions include development of formally verifiable ML models for safety-critical RTOS, standardized frameworks and tools for ML-RTOS integration, enhanced hardware support for deterministic ML execution, and real-time capable online learning algorithms. As embedded systems become increasingly complex and connected, the successful integration of AI/ML into RTOS will be crucial for next-generation intelligent real-time applications.
 
 \begin{thebibliography}{9}
 
@@ -153,6 +153,18 @@ Eyeriss: An Energy-Efficient Reconfigurable Accelerator for Deep Convolutional N
 % FOR: IEEE JSSC paper; landmark hardware-accelerator design with rigorous energy and latency
 %      analysis---directly supports Section 3.3 on hardware acceleration and deterministic timing.
 % AGAINST: Specific to CNNs on custom silicon; not directly applicable to software-only RTOS.
+
+% --- Directly addresses ML in RTOS (the paper just added) ---
+
+\bibitem{gracias2025leveraging}
+Gracias, A., \& Broklyn, P. (2025).
+Leveraging AI and ML for Predictive Scheduling in Real-Time Operating Systems.
+% FOR: Directly studies AI/ML integration in RTOS predictive scheduling; compares
+%      supervised learning (Random Forest, Gradient Boosting), RL (Q-learning), and LSTM
+%      against RMS/EDF. Reports 15--25\% reduction in task completion time, 2--4\% deadline
+%      miss rate (vs.\ 6--8\% traditional), and 10--20\% throughput gain.
+% AGAINST: Simulation-based working paper; results are preliminary and may not transfer
+%           directly to production RTOS hardware with strict certification requirements.
 
 \end{thebibliography}
 
