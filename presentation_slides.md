@@ -5,7 +5,7 @@
 **Date: January 30, 2026**
 
 ---
-
+# Intro to the topic & challenges: Noah
 ## Slide 1: Introduction
 
 ### What is RTOS?
@@ -68,7 +68,7 @@
 - Complex testing requirements
 
 ---
-
+# Approaches: Nils
 ## Slide 5: Approach 1 - Model Optimization
 
 ### Techniques:
@@ -165,6 +165,7 @@ Lightweight autoencoders and one-class SVMs for real-time detection
 
 ---
 
+# Comparison and Future: Martin
 ## Slide 11: Comparison of Approaches
 
 | Approach | Predictability | Resources | Complexity |
