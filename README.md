@@ -28,7 +28,7 @@ This repository contains the complete deliverables for the research project on *
   - Detailed analysis of challenges
   - Various approaches and solutions
   - Real-world applications and case studies
-  - 18 academic references with proper citations
+  - 9 academic references with proper citations
 
 ### 📊 Comparison Table
 - **`comparison_table.csv`** - Detailed comparison of different AI/ML integration approaches
@@ -87,11 +87,23 @@ This repository contains the complete deliverables for the research project on *
 
 ## Academic Integrity
 
-All content is based on published research and academic sources. Proper citations are included throughout the report with 18 references from:
+All content is based on published research and academic sources. Proper citations are included throughout the report with 9 references from:
 - Academic journals
 - Conference proceedings
 - Authoritative textbooks
 - Industry research papers
+
+### Sources that specifically address ML in RTOS (other than `rtos_ml.pdf`)
+
+Of the 8 original bibliography entries, the following three are the ones that actually discuss ML *within* resource-constrained or real-time embedded contexts:
+
+| Key | Citation | Relevance to ML in RTOS |
+|-----|----------|-------------------------|
+| `warden2019tinyml` | Warden & Situnayake (2019) *TinyML* | **Most directly relevant.** Dedicated to running ML inference on ultra-low-power microcontrollers; covers TensorFlow Lite, model size, and latency constraints directly applicable to RTOS deployments. |
+| `han2016deep` | Han, Mao & Dally (2016) *Deep Compression* | Seminal paper on quantization and pruning to shrink neural networks for embedded deployment; underpins Section 3.1 on model-optimization techniques. |
+| `chen2017eyeriss` | Chen et al. (2017) *Eyeriss* | Hardware accelerator for deep CNN inference; supports the hardware-acceleration discussion in Section 3.3 and provides deterministic timing analysis for embedded ML. |
+
+The remaining five original sources (`buttazzo2011hard`, `kopetz2011real`, `lee2017introduction`, `burns2017survey`, `goodfellow2016deep`) cover classical RTOS scheduling theory or general deep-learning theory but do not specifically address the intersection of ML and real-time embedded systems.
 
 ## File Formats
 
